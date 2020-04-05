@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { ShoppinglistService } from './shopping-list/services/shoppinglist.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { RecipesComponent } from './recipes/recipes.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ShoppinglistService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

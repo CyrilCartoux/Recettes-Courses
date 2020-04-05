@@ -10,7 +10,6 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeListComponent implements OnInit {
 
-
   recipes: Recipe[];
 
   constructor(
@@ -20,6 +19,5 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes();
   }
-
 
 }
