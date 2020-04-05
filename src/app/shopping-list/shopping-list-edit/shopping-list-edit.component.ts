@@ -17,7 +17,6 @@ export class ShoppingListEditComponent implements OnInit {
   }
 
   sendIngredient() {
-    console.log(this.ingredients);
     this.ingredientCreated.emit(this.ingredients);
   }
 }
