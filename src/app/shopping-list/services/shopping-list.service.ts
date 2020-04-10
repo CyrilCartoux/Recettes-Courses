@@ -15,6 +15,7 @@ export class ShoppinglistService {
   ];
 
   ingredientsChanged = new Subject<Ingredients[]>();
+  startedEditing = new Subject<number>();
 
   constructor() { }
 
@@ -36,6 +37,10 @@ export class ShoppinglistService {
   deleteAllIngredients() {
     this.ingredients.splice(0, this.ingredients.length);
     this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
+  getIngredient(index: number) {
+    return this.ingredients[index];
   }
 
 
