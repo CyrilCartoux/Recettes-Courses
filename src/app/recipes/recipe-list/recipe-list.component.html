@@ -1,15 +1,20 @@
 <div class="row">
-  <div class="col-xs-12">
-    <button class="btn btn-success">Nouvelle recette</button>
+  <div class="col-6">
+    <button class="btn btn-success"
+    [routerLink]="['new']" >Nouvelle recette</button>
+  </div>
+  <div class="input-group col-md-6">
+    <input type="text" class="form-control" name="content" placeholder="Rechercher une recette" [(ngModel)]=content
+      (input)="onSearchRecipe()">
   </div>
 </div>
 <hr>
 <div class="row">
   <div class="col-12">
 
-    <app-recipe-item 
-    *ngFor="let recipeElt of recipes" 
-    [recipe]="recipeElt">
+    <app-recipe-item *ngFor="let recipeElt of resultat; let i = index" 
+    [recipe]="recipeElt"
+    [index]="i">
     </app-recipe-item>
 
   </div>

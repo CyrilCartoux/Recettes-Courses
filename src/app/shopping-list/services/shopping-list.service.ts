@@ -32,5 +32,10 @@ export class ShoppinglistService {
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
 
+  deleteAllIngredients() {
+    this.ingredients.splice(0, this.ingredients.length);
+    this.ingredientsChanged.emit(this.ingredients.slice());
+  }
+
 
 }

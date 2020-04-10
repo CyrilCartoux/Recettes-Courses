@@ -1,6 +1,8 @@
-<a href="#" 
-class="list-group-item list-group-item-action clearfix" 
-(click)="onSelected()">
+<a
+[routerLink]="['/recettes', index]"
+routerLinkActive="active"
+style="cursor: pointer;"
+class="list-group-item list-group-item-action clearfix" >
 
   <div class="pull-left">
 

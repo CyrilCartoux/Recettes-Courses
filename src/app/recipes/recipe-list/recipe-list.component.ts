@@ -11,6 +11,8 @@ import { Recipe } from '../recipe.model';
 export class RecipeListComponent implements OnInit {
 
   recipes: Recipe[];
+  resultat: Recipe[];
+  content: string;
 
   constructor(
     private recipeService: RecipeService
@@ -18,6 +20,13 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes();
+    this.resultat = this.recipeService.getRecipes();
   }
-
+  onSearchRecipe() {
+    if (this.content) {
+      this.resultat = this.resultat.filter(elt => elt.name.includes(this.content));
+    } else {
+      this.resultat = this.recipes;
+    }
+  }
 }

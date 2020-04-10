@@ -1,43 +1,44 @@
-<div class="row">
+<div class="container">
   <div class="col-12">
-    <img class="img-responsive"
-    style="max-height: 350px;" 
-    [src]="recipe.imagePath" 
-    [alt]="recipe.name">
-  </div>
-</div>
-<div class="row">
-  <div class="col-12">
-    <h1>{{ recipe.name }}</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-12">
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Administrer la recette
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" style="cursor: pointer;" (click)='onAddToShoppingList()'>Ajouter a la shopping list</a>
-        <a class="dropdown-item">Modifier la recette</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item text-danger">Supprimer</a>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h1>{{ recipe.name }}</h1>
+      </div>
+      <div class="col-md-6">
+
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Administrer la recette
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" style="cursor: pointer;" (click)='onAddToShoppingList()'><i
+                class="fas fa-cart-plus"></i> Ajouter a la shopping list</a>
+            <a class="dropdown-item" style="cursor: pointer;" [routerLink]="['edit']"> 
+              <i class="far fa-edit"></i>
+              Modifier la recette
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" style="cursor: pointer;"><i class="far fa-trash-alt"></i> Supprimer</a>
+          </div>
+        </div>
+
       </div>
     </div>
+
+    <img class="img-responsive" style="max-height: 500px; max-width: 650px;" [src]="recipe.imagePath" [alt]="recipe.name">
+
+    <div class="row">
+      <div class="col-md-12 p-0">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+            {{ ingredient.name }} ({{ ingredient.amount }})
+          </li>
+        </ul>
+      </div>
+
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-12">
-    {{ recipe.desc }}
-  </div>
-</div>
-<div class="row">
-  <div class="col-12">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
-        {{ ingredient.name }} ({{ ingredient.amount }})
-      </li>
-    </ul>
-  </div>
+
 </div>

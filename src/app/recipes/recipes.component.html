@@ -2,14 +2,8 @@
   <div class="col-md-5">
     <app-recipe-list></app-recipe-list>
   </div>
-  <div class="col-md-7">
-    <app-recipe-detail
-    *ngIf="selectedRecipe; else infoText"
-    [recipe]='selectedRecipe'></app-recipe-detail>
-
-    <ng-template #infoText>
-      <p>Veuillez choisir une recette</p>
-    </ng-template>
+  <div class="col-md-7 p-0">
+    <router-outlet></router-outlet>
 
   </div>
 </div>
