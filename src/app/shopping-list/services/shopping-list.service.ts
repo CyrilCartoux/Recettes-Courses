@@ -19,6 +19,10 @@ export class ShoppinglistService {
 
   constructor() { }
 
+  getIngredient(index: number) {
+    return this.ingredients[index];
+  }
+
   getIngredients() {
     return this.ingredients.slice();
   }
@@ -34,13 +38,19 @@ export class ShoppinglistService {
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 
-  deleteAllIngredients() {
-    this.ingredients.splice(0, this.ingredients.length);
+  updateIngredient(index: number, newIngredient: Ingredients) {
+    this.ingredients[index] = newIngredient;
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 
-  getIngredient(index: number) {
-    return this.ingredients[index];
+  deleteOneIngredient(index: number) {
+    this.ingredients.splice(index, 1);
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
+  deleteAllIngredients() {
+    this.ingredients.splice(0, this.ingredients.length);
+    this.ingredientsChanged.next(this.ingredients.slice());
   }
 
 
