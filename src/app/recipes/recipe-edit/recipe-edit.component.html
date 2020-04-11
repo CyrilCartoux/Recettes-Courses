@@ -8,7 +8,7 @@
             <div class="col-4 text-center">
                 <!-- ADD & DELETE -->
 
-                <button class="btn btn-success mr-2 mt-3" type="submit">Enregistrer</button>
+                <button class="btn btn-success mr-2 mt-3" type="submit" [disabled]="addRecetteForm.invalid">Enregistrer</button>
                 <button class="btn btn-danger mt-3" type="submit">Supprimer</button>
             </div>
         </div>
