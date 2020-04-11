@@ -37,7 +37,7 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="imagePath">Image (url) :</label>
-                        <input type="text" id="imagePath" class="form-control" formControlName="imagePath">
+                        <input type="text" id="imagePath" class="form-control" formControlName="imagePath" #imagePath>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <img src="" class="img-responsive">
+                    <img [src]="imagePath.value" class="img-responsive" style="max-width: 200px; max-height: 150px; border-radius: 5px;">
                 </div>
             </div>
 
@@ -83,7 +83,7 @@
 
                         <!-- button  -->
                         <div class="col-2">
-                            <button type="button" class="btn btn-danger mr-3">
+                            <button type="button" class="btn btn-danger mr-3" (click)="deleteIngredient(i)">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </div>
