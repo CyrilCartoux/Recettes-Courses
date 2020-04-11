@@ -12,7 +12,7 @@
                 type="submit" 
                 [disabled]="addRecetteForm.invalid"
                 (click)='onSubmit()'>Enregistrer</button>
-                <button class="btn btn-danger mt-3" type="submit">Supprimer</button>
+                <button class="btn btn-danger mt-3" type="submit" (click)="onCancelEdit()">Annuler</button>
             </div>
         </div>
 

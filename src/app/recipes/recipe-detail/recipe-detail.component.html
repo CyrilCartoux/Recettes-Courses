@@ -15,19 +15,23 @@
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item text-success" style="cursor: pointer;" (click)='onAddToShoppingList()'><i
                 class="fas fa-cart-plus"></i> Ajouter a la shopping list</a>
-            <a class="dropdown-item text-primary" style="cursor: pointer;" [routerLink]="['edit']"> 
+            <a class="dropdown-item text-primary" style="cursor: pointer;" [routerLink]="['edit']">
               <i class="far fa-edit"></i>
               Modifier la recette
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-danger" style="cursor: pointer;"><i class="far fa-trash-alt"></i> Supprimer</a>
+            <a class="dropdown-item text-danger" style="cursor: pointer;" (click)="deleteRecipe()">
+              <i class="far fa-trash-alt"></i>
+              Supprimer
+            </a>
           </div>
         </div>
 
       </div>
     </div>
 
-    <img class="img-responsive" style="max-height: 550px; max-width: 750px;" [src]="recipe.imagePath" [alt]="recipe.name">
+    <img class="img-responsive" style="max-height: 550px; max-width: 750px;" [src]="recipe.imagePath"
+      [alt]="recipe.name">
 
     <div class="row">
       <div class="col-md-10 p-0 offset-1">
