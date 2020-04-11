@@ -1,3 +1,5 @@
+import { RecipeService } from './../services/recipe.service';
+import { FormGroup, FormControl, FormArray, Form } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,22 +13,72 @@ export class RecipeEditComponent implements OnInit {
   idToEdit: number;
   editMode = false;
 
+  addRecetteForm: FormGroup;
+
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private recipeService: RecipeService
   ) { }
 
   ngOnInit(): void {
+    // Get id in route :
     this.activatedRoute.params.subscribe(
       (param: Params) => {
         this.idToEdit = +param.id;
         this.editMode = param.id ? true : false;
+        this.initForm();
       }
     );
-    console.log(this.editMode);
-  }
-
-  editRecipe() {
 
   }
+
+  private initForm() {
+    let recipeName = '';
+    let recipeImagePath = '';
+    let recipeDescription = '';
+    const recipeIngredients = new FormArray([]);
+
+    if (this.editMode) {
+      const recipe = this.recipeService.getRecipeById(this.idToEdit);
+      recipeName = recipe.name;
+      recipeImagePath = recipe.imagePath;
+      recipeDescription = recipe.desc;
+      if (recipe.ingredients) {
+        for (const ingredient of recipe.ingredients) {
+          recipeIngredients.push(
+            new FormGroup({
+              name: new FormControl(ingredient.name),
+              amount: new FormControl(ingredient.amount)
+            })
+          );
+        }
+      }
+    }
+
+    this.addRecetteForm = new FormGroup({
+      name: new FormControl(recipeName),
+      imagePath: new FormControl(recipeImagePath),
+      description: new FormControl(recipeDescription),
+      ingredients: recipeIngredients
+    });
+  }
+
+  get ingredients() {
+    return this.addRecetteForm.get('ingredients') as FormArray;
+  }
+
+  onSubmit() {
+    console.log(this.addRecetteForm);
+  }
+
+  onAddIngredient() {
+    this.ingredients.push(
+      new FormGroup({
+        name: new FormControl(),
+        amount: new FormControl()
+      })
+    );
+  }
+
 
 }
