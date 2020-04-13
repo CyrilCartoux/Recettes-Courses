@@ -6,6 +6,7 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -36,6 +37,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     NoopAnimationsModule
   ],
   providers: [ShoppinglistService, RecipeService],

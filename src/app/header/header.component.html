@@ -9,10 +9,10 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" routerLink='recettes' routerLinkActive=active
-                    [routerLinkActiveOptions]="{ exact: true }" >Recettes</a>
+                        [routerLinkActiveOptions]="{ exact: true }">Recettes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="shopping" routerLinkActive=active >Shopping list</a>
+                    <a class="nav-link" routerLink="shopping" routerLinkActive=active>Shopping list</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right ml-auto">
@@ -22,8 +22,8 @@
                         Administrer
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Save data</a>
-                        <a class="dropdown-item" href="#">Fetch data</a>
+                        <a class="dropdown-item" (click)='onSaveData()'>Save data</a>
+                        <a class="dropdown-item" (click)='onFetchData()'>Fetch data</a>
                     </div>
                 </li>
             </ul>
