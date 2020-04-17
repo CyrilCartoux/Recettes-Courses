@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService, AuthResponse } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -16,7 +17,8 @@ export class AuthComponent implements OnInit {
   isLoggedIn = false;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class AuthComponent implements OnInit {
     (resData) => {
       this.isLoading = false;
       console.log(resData);
+      this.router.navigate(['/recettes']);
     },
     (errorMessage) => {
       this.error = errorMessage;
