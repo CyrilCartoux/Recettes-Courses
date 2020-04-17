@@ -24,7 +24,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right ml-auto">
                 <li class="nav-item" *ngIf="isAuth">
-                    <a style="cursor: pointer;" class="nav-link">Se deconnecter</a>
+                    <a style="cursor: pointer;" class="nav-link" (click)="logOutUser()">Se deconnecter</a>
                 </li>
                 <li class="nav-item dropdown" *ngIf="isAuth">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
