@@ -12,12 +12,12 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'shopping', pathMatch: 'full'},
   { path: 'recettes', component: RecipesComponent, children: [
-    { path: '', component: RecipeStartComponent},
-    { path: 'new', component: RecipeEditComponent},
-    { path: ':id', component: RecipeDetailComponent, resolve: [RecipeResolverService]},
-    { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipeResolverService]}
+    { path: '', component: RecipeStartComponent },
+    { path: 'new', component: RecipeEditComponent },
+    { path: ':id', component: RecipeDetailComponent, resolve: [RecipeResolverService] },
+    { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipeResolverService] }
   ]},
-  { path: 'shopping', component: ShoppingListComponent},
+  { path: 'shopping', component: ShoppingListComponent },
   { path: 'auth', component: AuthComponent }
 ];
 
