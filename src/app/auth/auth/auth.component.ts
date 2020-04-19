@@ -53,5 +53,9 @@ export class AuthComponent implements OnInit {
   form.reset();
 }
 
+closeErrorModal() {
+  this.error = null;
+}
+
 }
 

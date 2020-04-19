@@ -1,9 +1,10 @@
 
 <div class="row text-center">
     <div class="col-6 col-md-6 offset-3">
-        <div class="alert alert-danger" *ngIf="error">
+        <!-- <div class="alert alert-danger" *ngIf="error">
             <p>{{ error }}</p>
-        </div>
+        </div> -->
+        <app-alert [message]="error" *ngIf="error" (closed)="closeErrorModal()"></app-alert>
         <div *ngIf="isLoading">
             <app-loading-spinner></app-loading-spinner>
         </div>
