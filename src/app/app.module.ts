@@ -1,11 +1,10 @@
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 // Services :
 import { RecipeService } from './recipes/services/recipe.service';
 import { ShoppinglistService } from './shopping-list/services/shopping-list.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 // Components :
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
 import { AuthComponent } from './auth/auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner/loading-spinner.component';
 
@@ -28,8 +27,6 @@ import { RecipesModule } from './recipes/recipes.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    ShoppingListComponent,
-    ShoppingListEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
     AlertComponent
@@ -41,7 +38,8 @@ import { RecipesModule } from './recipes/recipes.module';
     FormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    RecipesModule
+    RecipesModule,
+    ShoppingListModule
   ],
   providers: [ShoppinglistService, RecipeService, {
     provide: HTTP_INTERCEPTORS,
