@@ -1,3 +1,4 @@
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner/loading-spinner.component';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 // Services :
 import { RecipeService } from './recipes/services/recipe.service';
@@ -5,8 +6,6 @@ import { ShoppinglistService } from './shopping-list/services/shopping-list.serv
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 // Components :
-import { AuthComponent } from './auth/auth/auth.component';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner/loading-spinner.component';
 
 
 // Modules :
@@ -20,25 +19,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AlertComponent } from './shared/alert/alert/alert.component';
-import { RecipesModule } from './recipes/recipes.module';
+import { AuthComponent } from './auth/auth/auth.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    AlertComponent,
     AuthComponent,
-    LoadingSpinnerComponent,
-    AlertComponent
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    RecipesModule,
     ShoppingListModule
   ],
   providers: [ShoppinglistService, RecipeService, {

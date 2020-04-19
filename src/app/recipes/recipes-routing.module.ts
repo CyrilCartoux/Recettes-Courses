@@ -8,20 +8,23 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeResolverService } from './services/recipe-resolver.service';
 
 const routes: Routes = [
-    { path: 'recettes', component: RecipesComponent,
-  canActivate: [AuthGuard],
-  children: [
-    { path: '', component: RecipeStartComponent },
-    { path: 'new', component: RecipeEditComponent },
-    { path: ':id', component: RecipeDetailComponent, resolve: [RecipeResolverService] },
-    { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipeResolverService] }
-  ]},
+  {
+    path: '',
+    component: RecipesComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: RecipeStartComponent },
+      { path: 'new', component: RecipeEditComponent },
+      { path: ':id', component: RecipeDetailComponent, resolve: [RecipeResolverService] },
+      { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipeResolverService] }
+    ]
+  },
 ];
 
 
-@NgModule ({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class RecipesRoutingModule {
 

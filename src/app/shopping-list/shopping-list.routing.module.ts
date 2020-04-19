@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ShoppingListComponent } from './shopping-list.component';
 
 const routes: Routes = [
-    { path: 'shopping', component: ShoppingListComponent },
+    { path: '', component: ShoppingListComponent },
 ];
 
 @NgModule({
