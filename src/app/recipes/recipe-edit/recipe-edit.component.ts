@@ -2,7 +2,7 @@ import { Recipe } from './../recipe.model';
 import { RecipeService } from './../services/recipe.service';
 
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
@@ -21,7 +21,6 @@ export class RecipeEditComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private recipeService: RecipeService,
-    private router: Router,
     private location: Location
   ) { }
 
@@ -76,8 +75,6 @@ export class RecipeEditComponent implements OnInit {
     this.ingredients.removeAt(i);
   }
 
-
-
   onSubmit() {
     const newRecipe = new Recipe(this.addRecetteForm.value.name,
       this.addRecetteForm.value.description,
@@ -106,6 +103,5 @@ export class RecipeEditComponent implements OnInit {
   onCancelEdit() {
     this.location.back();
   }
-
 
 }
