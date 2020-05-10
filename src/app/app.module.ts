@@ -1,4 +1,3 @@
-import { MessageService } from 'primeng/api';
 // Services :
 import { RecipeService } from './recipes/services/recipe.service';
 import { ShoppinglistService } from './shopping-list/services/shopping-list.service';
@@ -19,9 +18,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { StoreModule } from '@ngrx/store';
+
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
-
-
+import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 
 
 
@@ -40,7 +40,8 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
     ReactiveFormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    ShoppingListModule
+    ShoppingListModule,
+    StoreModule.forRoot({shoppingList: shoppingListReducer})
   ],
   providers: [ShoppinglistService, RecipeService, {
     provide: HTTP_INTERCEPTORS,
