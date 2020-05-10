@@ -4,7 +4,7 @@ import { ShoppinglistService } from '../services/shopping-list.service';
 import { Ingredients } from './../../shared/ingredients.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as ShooppingListActions from '../store/shopping-list.actions';
+import * as ShoppingListActions from '../store/shopping-list.actions';
 
 @Component({
   selector: 'app-shopping-list-edit',
@@ -52,13 +52,14 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     const newIngredient = new Ingredients(ingName, ingAmount);
 
     if (this.editMode) {
-      this.slService.updateIngredient(this.editedItemIndex, newIngredient);
+      // this.slService.updateIngredient(this.editedItemIndex, newIngredient);
+      this.store.dispatch(new ShoppingListActions.UpdateIngredient({index: this.editedItemIndex, ingredient: newIngredient}));
       this.editMode = false;
       this.ingredientForm.reset();
     } else {
       // this.slService.addIngredient(newIngredient);
-      // this.ingredientForm.reset();
-      this.store.dispatch(new ShooppingListActions.AddIngredient(newIngredient));
+      this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient));
+      this.ingredientForm.reset();
     }
   }
 
@@ -67,7 +68,8 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
   }
 
   deleteIngredient() {
-    this.slService.deleteOneIngredient(this.editedItemIndex);
+    // this.slService.deleteOneIngredient(this.editedItemIndex);
+    this.store.dispatch(new ShoppingListActions.DeleteIngredient(this.editedItemIndex));
     this.editMode = false;
     this.ingredientForm.reset();
   }
