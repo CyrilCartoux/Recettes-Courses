@@ -5,6 +5,7 @@ import { Ingredients } from './../../shared/ingredients.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as ShoppingListActions from '../store/shopping-list.actions';
+import * as fromShoppingList from './../store/shopping-list.reducer';
 
 @Component({
   selector: 'app-shopping-list-edit',
@@ -23,7 +24,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
   constructor(
     private slService: ShoppinglistService,
     private formBuilder: FormBuilder,
-    private store: Store<{ shoppingList: { ingredients: Ingredients[] } }>
+    private store: Store<fromShoppingList.AppState>
   ) { }
 
   ngOnInit() {
@@ -32,14 +33,16 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
       amount: ['', Validators.required]
     });
 
-    this.subscription = this.slService.startedEditing.subscribe(
-      (index: number) => {
-        this.editedItemIndex = index;
+    this.subscription = this.store.select('shoppingList').subscribe(stateData => {
+      if (stateData.editedIngredientIndex > -1) {
         this.editMode = true;
-        this.editedItem = this.slService.getIngredient(index);
+        this.editedItem = stateData.editedIngredient;
+        this.editedItemIndex = stateData.editedIngredientIndex;
         this.ingredientForm.patchValue(this.editedItem);
+      } else {
+        this.editMode = false;
       }
-    );
+    });
   }
 
   ngOnDestroy() {
@@ -53,7 +56,10 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
 
     if (this.editMode) {
       // this.slService.updateIngredient(this.editedItemIndex, newIngredient);
-      this.store.dispatch(new ShoppingListActions.UpdateIngredient({index: this.editedItemIndex, ingredient: newIngredient}));
+      this.store.dispatch(new ShoppingListActions.UpdateIngredient({
+        index: this.editedItemIndex,
+        ingredient: newIngredient
+      }));
       this.editMode = false;
       this.ingredientForm.reset();
     } else {
