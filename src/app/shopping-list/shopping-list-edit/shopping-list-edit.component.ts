@@ -70,7 +70,8 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
   }
 
   onEmptyShoppingList() {
-    this.slService.deleteAllIngredients();
+    // this.slService.deleteAllIngredients();
+    this.store.dispatch(new ShoppingListActions.DeleteAllIngredients());
   }
 
   deleteIngredient() {

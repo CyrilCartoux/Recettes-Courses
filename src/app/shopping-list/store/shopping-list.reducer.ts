@@ -62,17 +62,26 @@ export function shoppingListReducer(state: State = initialState, action: Shoppin
                     return igIndex !== action.payload;
                 })
             };
+
+        case ShoppingListActions.DELETEALL_INGREDIENTS:
+            return {
+                // always copy the old state !
+                ...state,
+                // then overwrite what you wanna change
+                ingredients: []
+            };
+
         case ShoppingListActions.START_EDIT:
             return {
                 ...state,
                 editedIngredientIndex: action.payload,
-                editedIngredient: {...state.ingredients[action.payload]}
+                editedIngredient: { ...state.ingredients[action.payload] }
             };
         case ShoppingListActions.STOP_EDIT:
             return {
                 ...state,
-                editedIngredient : null,
-                editedIngredientIndex : -1
+                editedIngredient: null,
+                editedIngredientIndex: -1
             };
         default: return state;
     }
