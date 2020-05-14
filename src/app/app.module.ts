@@ -1,3 +1,4 @@
+import { AuthEffects } from './auth/store/auth.effects';
 // Services :
 import { RecipeService } from './recipes/services/recipe.service';
 import { ShoppinglistService } from './shopping-list/services/shopping-list.service';
@@ -22,6 +23,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import * as fromApp from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import * as fromApp from './store/app.reducer';
     HttpClientModule,
     NoopAnimationsModule,
     ShoppingListModule,
-    StoreModule.forRoot(fromApp.appReducer)
+    StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [ShoppinglistService, RecipeService, {
     provide: HTTP_INTERCEPTORS,
