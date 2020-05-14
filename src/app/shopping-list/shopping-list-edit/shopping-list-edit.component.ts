@@ -5,7 +5,7 @@ import { Ingredients } from './../../shared/ingredients.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as ShoppingListActions from '../store/shopping-list.actions';
-import * as fromShoppingList from './../store/shopping-list.reducer';
+import * as fromApp from './../../store/app.reducer';
 
 @Component({
   selector: 'app-shopping-list-edit',
@@ -24,7 +24,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
   constructor(
     private slService: ShoppinglistService,
     private formBuilder: FormBuilder,
-    private store: Store<fromShoppingList.AppState>
+    private store: Store<fromApp.AppState>
   ) { }
 
   ngOnInit() {
