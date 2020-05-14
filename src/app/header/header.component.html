@@ -7,7 +7,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item" *ngIf="isAuth">
+                <li class="nav-item" *ngIf="isAuthenticated">
                     <a class="nav-link" routerLink='recettes' routerLinkActive=active
                         [routerLinkActiveOptions]="{ exact: true }">
                         Recettes
@@ -16,17 +16,17 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="shopping" routerLinkActive=active>Shopping list</a>
                 </li>
-                <li class="nav-item" *ngIf="!isAuth">
+                <li class="nav-item" *ngIf="!isAuthenticated">
                     <a class="nav-link" routerLink="auth" routerLinkActive=active>
                         S'identifier
                     </a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right ml-auto">
-                <li class="nav-item" *ngIf="isAuth">
-                    <a style="cursor: pointer;" class="nav-link" (click)="logOutUser()">Se deconnecter</a>
+                <li class="nav-item" *ngIf="isAuthenticated">
+                    <a style="cursor: pointer;" class="nav-link" (click)="onLogout()">Se deconnecter</a>
                 </li>
-                <li class="nav-item dropdown" *ngIf="isAuth">
+                <li class="nav-item dropdown" *ngIf="isAuthenticated">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Administrer

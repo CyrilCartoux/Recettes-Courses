@@ -1,9 +1,8 @@
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { AuthService, AuthResponseData } from './../auth.service';
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
 import * as fromApp from './../../store/app.reducer';
 import * as AuthActions from './../store/auth.actions';
 
@@ -20,8 +19,6 @@ export class AuthComponent implements OnInit {
   isLoggedIn = false;
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
     private store: Store<fromApp.AppState>
   ) { }
 
@@ -36,34 +33,26 @@ export class AuthComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  onSubmitForm(form: NgForm) {
-  this.isLoading = true;
-  let authObs: Observable<AuthResponseData>;
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
+    const email = form.value.email;
+    const password = form.value.password;
 
-  if (this.isLoginMode) {
-    // authObs = this.authService.signIn(form);
-    this.store.dispatch(new AuthActions.LoginStart({
-      email: form.value.email,
-      password: form.value.password
-    }));
-  } else {
-    authObs = this.authService.signup(form.value.email, form.value.password);
+    if (this.isLoginMode) {
+      // authObs = this.authService.login(email, password);
+      this.store.dispatch(
+        new AuthActions.LoginStart({ email: email, password: password })
+      );
+    } else {
+      this.store.dispatch(
+        new AuthActions.SignupStart({ email: email, password: password })
+      );
+    }
+
+    form.reset();
   }
-
-  // authObs.subscribe(
-  //   (resData) => {
-  //     this.isLoading = false;
-  //     console.log(resData);
-  //     this.router.navigate(['/recettes']);
-  //   },
-  //   (errorMessage) => {
-  //     this.error = errorMessage;
-  //     this.isLoading = false;
-  //   }
-  // );
-
-  form.reset();
-}
 
 closeErrorModal() {
   this.error = null;
