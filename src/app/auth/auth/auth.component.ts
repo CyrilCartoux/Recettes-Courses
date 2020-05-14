@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { AuthService, AuthResponse } from './../auth.service';
+import { AuthService, AuthResponseData } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -38,7 +38,7 @@ export class AuthComponent implements OnInit {
 
   onSubmitForm(form: NgForm) {
   this.isLoading = true;
-  let authObs: Observable<AuthResponse>;
+  let authObs: Observable<AuthResponseData>;
 
   if (this.isLoginMode) {
     // authObs = this.authService.signIn(form);
@@ -47,7 +47,7 @@ export class AuthComponent implements OnInit {
       password: form.value.password
     }));
   } else {
-    authObs = this.authService.signUp(form);
+    authObs = this.authService.signup(form.value.email, form.value.password);
   }
 
   // authObs.subscribe(
