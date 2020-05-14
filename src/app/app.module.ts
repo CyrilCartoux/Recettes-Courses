@@ -35,7 +35,7 @@ import { EffectsModule } from '@ngrx/effects';
     LoadingSpinnerComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
